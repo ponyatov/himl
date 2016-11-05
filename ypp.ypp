@@ -3,12 +3,13 @@
 %}
 %defines %union { Sym*o; }
 %token <o> SYM NUM STR		// symbol
-%token <o> LC RC			// {}
+%token <o> LQ RQ LC RC		// [] {}
 %type <o> ex scalar vector
 %%
 REPL : | REPL ex		{ cout << $2->dump() << endl; } ;
 scalar : SYM | NUM | STR ;
 ex : scalar
+   | LQ vector RQ		{ $$=$2; }
    | ex LC vector RC	{ $$=$1;
 					for (auto it=$3->nest.begin(),e=$3->nest.end();it!=e;it++)
 						$1->push(*it); }

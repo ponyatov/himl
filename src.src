@@ -5,13 +5,6 @@ LICENSE	{ GNU LesserGPL }
 AUTHOR	{ Dmitry Ponyatov email{dponyatov@gmail.com} }
 GITHUB	{ 'https://github.com/ponyatov/' MODULE }
 
-README.md {
-	'# ' MODULE '\n'
-	'### ' TITLE '\n'
-	ABOUT
-}
-.end
-
 core { ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile }
 
 ingvim { != { core Makefile } }
@@ -21,9 +14,13 @@ files { src.src log.log core .gitignore bat.bat README.md meta.hpp }
 touch { files }
 
 bat.bat {
-	@start .
-	@gvim -p ingvim
+	[ @start . ]
+	[ @gvim -p ingvim ]
+	[]
+	[]
 }
+
+.end
 
 README.md {
 	# MODULE

@@ -16,7 +16,9 @@ string LexString;
 <lexstring>.		{LexString+=yytext[0];}
 
 @0x[0-9a-f]+		{}
-[a-zA-Z0-9_.]+		TOC(Sym,SYM)
+[a-zA-Z0-9_.!=@\-]+		TOC(Sym,SYM)
+\[					TOC(Sym,LQ)
+\]					TOC(Sym,RQ)
 \{					TOC(Sym,LC)
 \}					TOC(Sym,RC)
 [ \t\r\n]+			{}

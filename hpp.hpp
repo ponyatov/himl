@@ -12,14 +12,16 @@ struct Sym {
 	string val;
 	Sym(string);
 	vector<Sym*> nest; void push(Sym*);
-	virtual string dump(int=0); virtual string head(); string pad(int);
+	virtual string dump(int=0);
+	virtual string head(); virtual string foot(int);
+	string pad(int);
 };
 extern map<string,Sym*> glob;
 extern void glob_init();
 
 struct Str:Sym { Str(string); string head(); };
 
-struct Vector:Sym { Vector(); };
+struct Vector:Sym { Vector(); string head(); string foot(int); };
 
 extern int yylex();
 extern int yylineno;
