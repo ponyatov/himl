@@ -2,9 +2,17 @@
 #include "hpp.hpp"
 %}
 %defines %union { Sym*o; }
-%token <o> SYM
-%type <o> ex
+%token <o> SYM NUM STR		// symbol
+%token <o> LC RC			// {}
+%type <o> ex scalar vector
 %%
-REPL : | REPL ex { cout << $2->dump() << endl; } ;
-ex : SYM ;
-
+REPL : | REPL ex		{ cout << $2->dump() << endl; } ;
+scalar : SYM | NUM | STR ;
+ex : scalar
+   | ex LC vector RC	{ $$=$1;
+					for (auto it=$3->nest.begin(),e=$3->nest.end();it!=e;it++)
+						$1->push(*it); }
+;
+vector:					{ $$=new Vector(); }
+	| vector ex			{ $$=$1; $1->push($2); }
+;

@@ -1,5 +1,23 @@
 %{
 #include "hpp.hpp"
+string LexString;
 %}
+%x lexstring
 %option noyywrap yylineno
 %%
+#[^\n]*				{}
+^\.end				{yyterminate();}
+
+'					{BEGIN(lexstring); LexString="";}
+<lexstring>'		{BEGIN(INITIAL); TOS(Str,STR);}
+<lexstring>\\r		{LexString+='\r';}
+<lexstring>\\n		{LexString+='\n';}
+<lexstring>\\t		{LexString+='\t';}
+<lexstring>.		{LexString+=yytext[0];}
+
+@0x[0-9a-f]+		{}
+[a-zA-Z0-9_.]+		TOC(Sym,SYM)
+\{					TOC(Sym,LC)
+\}					TOC(Sym,RC)
+[ \t\r\n]+			{}
+.					{}

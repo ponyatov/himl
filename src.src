@@ -1,9 +1,16 @@
 MODULE	{ himl }
-TITLE	{ [H]omo[I]conic [M]eta[L]anguage }
+TITLE	{ '[H]omo[I]conic [M]eta[L]anguage' }
 ABOUT	{ }
 LICENSE	{ GNU LesserGPL }
 AUTHOR	{ Dmitry Ponyatov email{dponyatov@gmail.com} }
-GITHUB	{ https://github.com/ponyatov/ MODULE }
+GITHUB	{ 'https://github.com/ponyatov/' MODULE }
+
+README.md {
+	'# ' MODULE '\n'
+	'### ' TITLE '\n'
+	ABOUT
+}
+.end
 
 core { ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile }
 
