@@ -1,0 +1,55 @@
+MODULE	{ himl }
+TITLE	{ [h]omo[i]conic [m]eta[l]anguage }
+ABOUT	{ }
+LICENSE	{ GNU LesserGPL }
+AUTHOR	{ Dmitry Ponyatov email{dponyatov@gmail.com} }
+GITHUB	{ https://github.com/ponyatov/ MODULE }
+
+core { ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile }
+
+ingvim { != { core Makefile } }
+
+files { src.src log.log core .gitignore bat.bat README.md meta.hpp }
+
+touch { files }
+
+bat.bat {
+	@start .
+	@gvim -p ingvim
+}
+
+README.md {
+	# MODULE
+	### TITLE
+
+	(c) AUTHOR
+
+	github: GITHUB
+
+	ABOUT
+}
+
+.gitignore {
+	*~
+	*.swp
+	exe.exe
+	log.log
+	ypp.tab.cpp ypp.tab.hpp
+	lex.yy.c
+}
+
+Makefile {
+	log.log: src.src ./exe.exe
+		./exe.exe < $< > $@ && tail $(TAIL) $@
+	C = cpp.cpp ypp.tab.cpp lex.yy.c
+	H = hpp.hpp ypp.tab.hpp meta.hpp
+	L = 
+	CXXFLAGS = -std=gnu++11
+	./exe.exe: $(C) $(H)
+		$(CXX) $(CXXFLAGS) -o $@ $(C) $(L)
+	ypp.tab.cpp ypp.tab.hpp: ypp.ypp
+		bison $<
+	lex.yy.c: lpp.lpp
+		flex $<
+}
+
