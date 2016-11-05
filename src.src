@@ -1,5 +1,5 @@
 MODULE	{ himl }
-TITLE	{ [h]omo[i]conic [m]eta[l]anguage }
+TITLE	{ [H]omo[I]conic [M]eta[L]anguage }
 ABOUT	{ }
 LICENSE	{ GNU LesserGPL }
 AUTHOR	{ Dmitry Ponyatov email{dponyatov@gmail.com} }
@@ -22,7 +22,7 @@ README.md {
 	# MODULE
 	### TITLE
 
-	(c) AUTHOR
+	(c) AUTHOR , LICENSE
 
 	github: GITHUB
 

@@ -1,5 +1,5 @@
 #define MODULE	"himl"
-#define TITLE	"[h]omo[i]conic [m]eta[l]anguage"
+#define TITLE	"[H]omo[I]conic [M]eta[L]anguage"
 #define ABOUT	""
 #define LICENSE	"GNU LesserGPL"
 #define AUTHOR	"Dmitry Ponyatov <dponyatov@gmail.com>"
